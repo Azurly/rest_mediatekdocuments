@@ -8,7 +8,7 @@ class ConnexionPDO {
 
     /**
      * constructeur privé : connexion à la BDD
-     * @param string $login 
+     * @param string $login
      * @param string $mdp
      * @param string $bd
      * @param string $serveur
