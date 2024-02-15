@@ -68,9 +68,10 @@ class AccessBDD {
                     return $this->selectExemplairesRevue($champs['id']);
                 case "commandedocument" :
                     return $this->selectCommandeDocument($champs['idLivreDvd']);
+                case "utilisateur" :
+                    return $this->selectUtilisateur($champs);
                 default:
                     // cas d'un select sur une table avec recherche sur des champs
-                    $champs = str_replace("-", " ", $champs);
                     return $this->selectTableOnConditons($table, $champs);
             }
         }else{
@@ -193,6 +194,20 @@ class AccessBDD {
         $req .= "ORDER BY c.dateCommande DESC";
         return $this->conn->query($req, $param);
     }
+
+    public function selectUtilisateur($champs)
+    {
+        $param = array(
+            "mail" => $champs["mail"],
+            "password" => $champs["password"]
+        );
+        $req = "SELECT u.id, u.nom, u.mail, u.idService, s.libelle ";
+        $req .= "FROM utilisateur u join service s on u.idservice=s.id ";
+        $req .= "WHERE u.mail = :mail AND u.password = :password";
+        var_dump($req, $champs);
+        return $this->conn->query($req, $param);
+    }
+
     /**
      * suppresion d'une ou plusieurs lignes dans une table
      * @param string $table nom de la table
@@ -265,5 +280,4 @@ class AccessBDD {
             return null;
         }
     }
-
 }
