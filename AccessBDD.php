@@ -204,7 +204,7 @@ class AccessBDD {
         $req = "SELECT u.id, u.nom, u.mail, u.idService, s.libelle ";
         $req .= "FROM utilisateur u join service s on u.idservice=s.id ";
         $req .= "WHERE u.mail = :mail AND u.password = :password";
-        var_dump($req, $champs);
+        //var_dump($req, $champs);
         return $this->conn->query($req, $param);
     }
 
