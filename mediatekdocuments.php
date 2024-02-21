@@ -9,8 +9,11 @@ if(!isset($_SERVER['PHP_AUTH_USER']) || (isset($_SERVER['PHP_AUTH_USER']) &&
     $controle->unauthorized();
     
 }else{
-    
-    // récupération des données
+    if(isset($_GET['error']) && $_GET['error'] == 404){
+        echo json_encode(array("message" =>"404 Not Found "));
+        exit();
+    }
+// récupération des données
     // Nom de la table au format string
     $table = filter_input(INPUT_GET, 'table', FILTER_SANITIZE_STRING) ??
              filter_input(INPUT_POST, 'table', FILTER_SANITIZE_STRING);
@@ -34,5 +37,5 @@ if(!isset($_SERVER['PHP_AUTH_USER']) || (isset($_SERVER['PHP_AUTH_USER']) &&
     }else if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
         $controle->delete($table, $champs);
     }
-
-}
+    }
+    
