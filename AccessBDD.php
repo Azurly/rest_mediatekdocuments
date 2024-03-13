@@ -71,6 +71,7 @@ class AccessBDD {
                 case "utilisateur" :
                     return $this->selectUtilisateur($champs);
                 default:
+                    $champs = str_replace("-", " ", $champs);
                     // cas d'un select sur une table avec recherche sur des champs
                     return $this->selectTableOnConditons($table, $champs);
             }
