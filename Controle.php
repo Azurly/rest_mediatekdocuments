@@ -74,7 +74,13 @@ class Controle{
      * @param array $champs nom et valeur des champs
      */
     public function post($table, $champs){
-        $result = $this->accessBDD->insertOne($table, $champs);
+        if ($table == "dvd"){
+            $result = $this->accessBDD->insertDvd($table, $champs);
+        } elseif ($table == "commandedocument"){
+            $result =$this->accessBDD->insertCommande($table, $champs);
+        } else{
+            $result = $this->accessBDD->insertOne($table, $champs);
+        }
         if ($result == null || $result == false){
             $this->reponse(400, "requete invalide");
         }else{

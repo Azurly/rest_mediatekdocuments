@@ -258,6 +258,47 @@ class AccessBDD {
         }
     }
 
+    public function insertDvd($table, $champs){
+        $champsDocument = [
+            "id" => $champs["id"],
+            "titre" => $champs["titre"],
+            "image" => $champs["image"],
+            "idRayon" => $champs["idRayon"],
+            "idPublic" => $champs["idPublic"],
+            "idGenre" => $champs["idGenre"]
+        ];
+        $champsLivreDvd = [
+            "id" => $champs["id"]
+        ];
+        $champsDvd = [
+            "id" => $champs["id"],
+            "synopsys" => $champs["synopsys"],
+            "realisateur" => $champs["realisateur"],
+            "duree" => $champs["duree"]
+        ];
+        $result = $this->insertOne("document", $champsDocument);
+        if($result == null || $result == false){
+            return null;
+        }
+        $result = $this->insertOne("livres_dvd", $champsLivreDvd);
+        if($result == null || $result == false){
+            return null;
+        }
+        return $this->insertOne("dvd", $champsDvd);
+        
+    }
+    public function insertCommande($table, $champs){
+        $champsCommande = [ "id" => $champs["id"], "dateCommande" => $champs["dateCommande"],
+            "montant" => $champs["montant"]];
+        $champsCommandeDocument = [ "id" => $champs["id"], "nbExemplaire" => $champs["nbExemplaire"],
+                "idLivreDvd" => $champs["idLivreDvd"], "idsuivi" => $champs["idSuivi"]];
+        $result = $this->insertOne("commande", $champsCommande);
+        if ($result == null || $result == false){
+            return null;
+        }
+        return  $this->insertOne("commandedocument", $champsCommandeDocument);
+    }
+
     /**
      * modification d'une ligne dans une table
      * @param string $table nom de la table
