@@ -285,13 +285,19 @@ class AccessBDD {
             return null;
         }
         return $this->insertOne("dvd", $champsDvd);
-        
     }
     public function insertCommande($table, $champs){
-        $champsCommande = [ "id" => $champs["id"], "dateCommande" => $champs["dateCommande"],
-            "montant" => $champs["montant"]];
-        $champsCommandeDocument = [ "id" => $champs["id"], "nbExemplaire" => $champs["nbExemplaire"],
-                "idLivreDvd" => $champs["idLivreDvd"], "idsuivi" => $champs["idSuivi"]];
+        $champsCommande = [
+            "id" => $champs["id"],
+            "dateCommande" => $champs["dateCommande"],
+            "montant" => $champs["montant"]
+        ];
+        $champsCommandeDocument = [
+            "id" => $champs["id"],
+            "nbExemplaire" => $champs["nbExemplaire"],
+            "idLivreDvd" => $champs["idLivreDvd"],
+            "idSuivi" => $champs["idSuivi"]
+        ];
         $result = $this->insertOne("commande", $champsCommande);
         if ($result == null || $result == false){
             return null;
