@@ -229,6 +229,52 @@ class AccessBDD {
             return null;
         }
     }
+    public function deleteCommande($table, $champs){
+        $champsCommande = [
+            "id" => $champs["id"],
+            "dateCommande" => $champs["dateCommande"],
+            "montant" => $champs["montant"]
+        ];
+        $champsCommandeDocument = [
+            "id" => $champs["id"],
+            "nbExemplaire" => $champs["nbExemplaire"],
+            "idLivreDvd" => $champs["idLivreDvd"],
+            "idSuivi" => $champs["idSuivi"]
+        ];
+        $result = $this->delete("commande", $champsCommande);
+        if ($result == null || $result == false){
+            return null;
+        }
+        return  $this->delete("commandedocument", $champsCommandeDocument);
+    }
+    public function deleteDvd($table, $champs){
+        $champsDocument = [
+            "id" => $champs["id"],
+            "titre" => $champs["titre"],
+            "image" => $champs["image"],
+            "idRayon" => $champs["idRayon"],
+            "idPublic" => $champs["idPublic"],
+            "idGenre" => $champs["idGenre"]
+        ];
+        $champsLivreDvd = [
+            "id" => $champs["id"]
+        ];
+        $champsDvd = [
+            "id" => $champs["id"],
+            "synopsys" => $champs["synopsys"],
+            "realisateur" => $champs["realisateur"],
+            "duree" => $champs["duree"]
+        ];
+        $result = $this->delete("document", $champsDocument);
+        if($result == null || $result == false){
+            return null;
+        }
+        $result = $this->delete("livres_dvd", $champsLivreDvd);
+        if($result == null || $result == false){
+            return null;
+        }
+        return $this->delete("dvd", $champsDvd);
+    }
 
     /**
      * ajout d'une ligne dans une table
