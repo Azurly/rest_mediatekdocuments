@@ -248,32 +248,30 @@ class AccessBDD {
         return  $this->delete("commandedocument", $champsCommandeDocument);
     }
     public function deleteDvd($table, $champs){
-        $champsDocument = [
-            "id" => $champs["Id"],
+        $champsDocument = [ "id" => $champs["Id"], 
             "titre" => $champs["Titre"],
-            "image" => $champs["Image"],
+            "image" => $champs["Image"] , 
             "idRayon" => $champs["IdRayon"],
-            "idPublic" => $champs["IdPublic"],
+            "idPublic" => $champs["IdPublic"], 
             "idGenre" => $champs["IdGenre"]
         ];
-        $champsLivreDvd = [
+        $champsDvdLivre = [ 
             "id" => $champs["Id"]
         ];
-        $champsDvd = [
-            "id" => $champs["Id"],
+        $champsDvd = [ 
+            "id" => $champs["Id"], 
             "synopsis" => $champs["Synopsis"],
-            "realisateur" => $champs["Realisateur"],
-            "duree" => $champs["Duree"]
+            "realisateur" => $champs["Realisateur"], "duree" => $champs["Duree"]
         ];
-        $result = $this->delete("document", $champsDocument);
-        if($result == null || $result == false){
+        $result = $this->delete("dvd", $champsDvd);
+        if ($result == null || $result == false){
             return null;
         }
-        $result = $this->delete("livres_dvd", $champsLivreDvd);
-        if($result == null || $result == false){
+        $result = $this->delete("livres_dvd", $champsDvdLivre);
+        if ($result == null || $result == false){
             return null;
         }
-        return $this->delete("dvd", $champsDvd);
+        return $this->delete("document", $champsDocument);
     }
 
     /**
