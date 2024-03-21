@@ -249,21 +249,21 @@ class AccessBDD {
     }
     public function deleteDvd($table, $champs){
         $champsDocument = [
-            "id" => $champs["id"],
-            "titre" => $champs["titre"],
-            "image" => $champs["image"],
-            "idRayon" => $champs["idRayon"],
-            "idPublic" => $champs["idPublic"],
-            "idGenre" => $champs["idGenre"]
+            "id" => $champs["Id"],
+            "titre" => $champs["Titre"],
+            "image" => $champs["Image"],
+            "idRayon" => $champs["IdRayon"],
+            "idPublic" => $champs["IdPublic"],
+            "idGenre" => $champs["IdGenre"]
         ];
         $champsLivreDvd = [
-            "id" => $champs["id"]
+            "id" => $champs["Id"]
         ];
         $champsDvd = [
-            "id" => $champs["id"],
-            "synopsys" => $champs["synopsys"],
-            "realisateur" => $champs["realisateur"],
-            "duree" => $champs["duree"]
+            "id" => $champs["Id"],
+            "synopsis" => $champs["Synopsis"],
+            "realisateur" => $champs["Realisateur"],
+            "duree" => $champs["Duree"]
         ];
         $result = $this->delete("document", $champsDocument);
         if($result == null || $result == false){
@@ -306,21 +306,21 @@ class AccessBDD {
 
     public function insertDvd($table, $champs){
         $champsDocument = [
-            "id" => $champs["id"],
-            "titre" => $champs["titre"],
-            "image" => $champs["image"],
-            "idRayon" => $champs["idRayon"],
-            "idPublic" => $champs["idPublic"],
-            "idGenre" => $champs["idGenre"]
+            "id" => $champs["Id"],
+            "titre" => $champs["Titre"],
+            "image" => $champs["Image"],
+            "idRayon" => $champs["IdRayon"],
+            "idPublic" => $champs["IdPublic"],
+            "idGenre" => $champs["IdGenre"]
         ];
         $champsLivreDvd = [
-            "id" => $champs["id"]
+            "id" => $champs["Id"]
         ];
         $champsDvd = [
-            "id" => $champs["id"],
-            "synopsys" => $champs["synopsys"],
-            "realisateur" => $champs["realisateur"],
-            "duree" => $champs["duree"]
+            "id" => $champs["Id"],
+            "synopsis" => $champs["Synopsis"],
+            "realisateur" => $champs["Realisateur"],
+            "duree" => $champs["Duree"]
         ];
         $result = $this->insertOne("document", $champsDocument);
         if($result == null || $result == false){
@@ -334,7 +334,7 @@ class AccessBDD {
     }
     public function insertCommande($table, $champs){
         $champsCommande = [
-            "id" => $champs["id"],
+            "id" => $champs["Id"],
             "dateCommande" => $champs["dateCommande"],
             "montant" => $champs["montant"]
         ];
