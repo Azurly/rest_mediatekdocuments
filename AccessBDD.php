@@ -273,6 +273,33 @@ class AccessBDD {
         }
         return $this->delete("document", $champsDocument);
     }
+    public function deleteLivre($table, $champs){
+        $champsDocument = [ "id" => $champs["Id"], 
+            "titre" => $champs["Titre"], 
+            "image" => $champs["Image"], 
+            "idRayon" => $champs["IdRayon"], 
+            "idPublic" => $champs["IdPublic"], 
+            "idGenre" => $champs["IdGenre"]
+        ];
+        $champsDvdLivre = [ 
+            "id" => $champs["Id"]
+        ];
+        $champsLivre = [ 
+            "id" => $champs["Id"], 
+            "ISBN" => $champs["Isbn"],
+            "auteur" => $champs["Auteur"], 
+            "collection" => $champs["Collection"]
+        ];
+        $result = $this->delete("livre", $champsLivre);
+        if ($result == null || $result == false){
+            return null;
+        }
+        $result = $this->delete("livres_dvd", $champsDvdLivre);
+        if ($result == null || $result == false){
+            return null;
+        }
+        return $this->delete("document", $champsDocument);
+    }
 
     /**
      * ajout d'une ligne dans une table
@@ -330,6 +357,36 @@ class AccessBDD {
         }
         return $this->insertOne("dvd", $champsDvd);
     }
+    
+    public function insertLivre($table, $champs){
+        $champsDocument = [
+            "id" => $champs["Id"],
+            "titre" => $champs["Titre"],
+            "image" => $champs["Image"],
+            "idRayon" => $champs["IdRayon"],
+            "idPublic" => $champs["IdPublic"],
+            "idGenre" => $champs["IdGenre"]
+        ];
+        $champsLivreDvd = [
+            "id" => $champs["Id"]
+        ];
+        $champsLivre = [ 
+            "id" => $champs["Id"], 
+            "ISBN" => $champs["Isbn"],
+            "auteur" => $champs["Auteur"], 
+            "collection" => $champs["Collection"]
+        ];
+        $result = $this->insertOne("document", $champsDocument);
+        if($result == null || $result == false){
+            return null;
+        }
+        $result = $this->insertOne("livres_dvd", $champsLivreDvd);
+        if($result == null || $result == false){
+            return null;
+        }
+        return $this->insertOne("livre", $champsLivre);
+    }
+
     public function insertCommande($table, $champs){
         $champsCommande = [
             "id" => $champs["Id"],

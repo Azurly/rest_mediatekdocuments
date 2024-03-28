@@ -64,6 +64,8 @@ class Controle{
             $result = $this->accessBDD->deleteDvd($table, $champs);
         } elseif ($table == "commandedocument"){
             $result =$this->accessBDD->deleteCommande($table, $champs);
+        } elseif ($table == "livre"){
+            $result =$this->accessBDD->deleteLivre($table, $champs);
         } else{
             $result = $this->accessBDD->delete($table, $champs);
         }
@@ -82,7 +84,9 @@ class Controle{
     public function post($table, $champs){
         if ($table == "dvd"){
             $result = $this->accessBDD->insertDvd($table, $champs);
-        } elseif ($table == "commandedocument"){
+        } elseif ($table == "livre"){
+            $result =$this->accessBDD->insertLivre($table, $champs);
+        }elseif ($table == "commandedocument"){
             $result =$this->accessBDD->insertCommande($table, $champs);
         } else{
             $result = $this->accessBDD->insertOne($table, $champs);
